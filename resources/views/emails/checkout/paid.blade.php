@@ -1,12 +1,14 @@
 @component('mail::message')
-# Introduction
+    # Your Transaction Has Been Confirmed
 
-The body of your message.
+    Hi, {{ $checkout->User->name }}
+    <br>
+    Your transaction has been confirmed, now you can enjoy the benefits of <b>{{ $checkout->Camp->title }} Camp.
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+        @component('mail::button', ['url' => route('user.dashboard')])
+            My Dashboard
+        @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
-@endcomponent
+        Thanks,<br>
+        {{ config('app.name') }}
+    @endcomponent

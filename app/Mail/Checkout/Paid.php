@@ -11,14 +11,15 @@ class Paid extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $checkout;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($checkout)
     {
-        //
+        $this->checkout = $checkout;
     }
 
     /**
@@ -28,6 +29,8 @@ class Paid extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.checkout.paid');
+        return $this->subject('Your Transaction Has Been Confirmed')->markdown('emails.checkout.paid', [
+            'checkout' => $this->checkout
+        ]);
     }
 }
